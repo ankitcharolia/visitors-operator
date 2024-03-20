@@ -31,6 +31,14 @@ make generate
 ```shell
 make manifests
 ```
+**NOTE:** This will invoke controller-gen utility to generate the CRD manifests at config/crd/bases/app.redhat.com_visitorsapps.yaml.
+
+### Controllers
+Controllers are core components in Kubernetes and is where your operator logic takes place.
+
+The reconcile function is responsible for enforcing the desired CR state on the actual state of the system. It runs each time an event occurs on a watched CR or resource, and will return some value depending on whether those states match or not.
+
+In this way, every Controller has a Reconciler object with a Reconcile() method that implements the reconcile loop.
 
 ### Run your operator locally
 ```shell
@@ -101,17 +109,10 @@ make docker-build docker-push
 ```
 **NOTE:** visitors-operator is available here: `ankitcharolia/visitors-operator:0.0.1`
 
-
-
-**NOTE:** This will invoke controller-gen utility to generate the CRD manifests at config/crd/bases/app.redhat.com_visitorsapps.yaml.
-
-### Controllers
-Controllers are core components in Kubernetes and is where your operator logic takes place.
-
-The reconcile function is responsible for enforcing the desired CR state on the actual state of the system. It runs each time an event occurs on a watched CR or resource, and will return some value depending on whether those states match or not.
-
-In this way, every Controller has a Reconciler object with a Reconcile() method that implements the reconcile loop.
-
+### Deploy to Kubernetes
+```bash
+make deploy/undeploy
+```
 
 # References
 * [Redhat Go Operator Tutorial](https://redhat-scholars.github.io/operators-sdk-tutorial/template-tutorial/04-go.html#init)
