@@ -90,9 +90,18 @@ curl $IP:$PORT
 ```
 
 ### Build and Push the Operator
-```shell
-
+Update the docker image variables
+```bash
+IMAGE_TAG_BASE ?= ankitcharolia/visitors-operator
+IMG ?= $(IMAGE_TAG_BASE):$(VERSION)
 ```
+```shell
+# Be sure to be logged to your registry, then build and push your operator:
+make docker-build docker-push
+```
+**NOTE:** visitors-operator is available here: `ankitcharolia/visitors-operator:0.0.1`
+
+
 
 **NOTE:** This will invoke controller-gen utility to generate the CRD manifests at config/crd/bases/app.redhat.com_visitorsapps.yaml.
 
